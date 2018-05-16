@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>动画相同，缓动不同</title>
+  <style type="text/css">
+  .ball {
+    float: left;
+    margin: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #000;
+  }
+  .ball1 {
+    animation: move 1s ease-in infinite alternate;
+  }
+
+  .ball2 {
+    animation: move 1s linear infinite alternate;
+  }
+
+  .ball3 {
+    animation: move 1s ease-out infinite alternate;
+  }
+
+  @keyframes move {
+    100% {
+      transform: translateY(5vw);
+    }
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="ball ball1"></div>
+    <div class="ball ball2"></div>
+    <div class="ball ball3"></div>
+  </div>
+</body>
+
+</html>

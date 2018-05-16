@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="red">
+  <title>css属性:-webkit-text-stroke属性实现文字描边</title>
+  <style type="text/css">
+    html,body {
+      font-size: 70px;
+      color: #000;
+    }
+    .stroke-1 {
+      -webkit-text-stroke: 1px #000;
+    }
+    .stroke-2 {
+      -webkit-text-stroke: 1px red;
+    }
+    .stroke-3 {
+      -webkit-text-stroke: 1px red;
+      position: relative;
+      z-index: 0;
+    }
+    .stroke-3::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div>文字描边支持宽度、颜色</div>
+  <div class="stroke-1">文字描边支持宽度、颜色</div>
+  <div class="stroke-2">文字描边支持宽度、颜色</div>
+
+  <div class="stroke-3" data-text="文字描边支持宽度、颜色">文字描边支持宽度、颜色</div>
+</body>
+</html>

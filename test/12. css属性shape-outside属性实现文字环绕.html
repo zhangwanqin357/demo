@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css属性shape-outside实现文字环绕</title>
+  <style type="text/css">
+    p {
+      margin: 0;
+      font-size: 22px;
+    }
+    .section {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+      width: 500px;
+      height: 350px;
+      background-color: #eee;
+    }
+    .element {
+      float: left;
+      width: 200px;
+      height: 200px;
+      border: 10px solid red;
+      background-color: purple;
+      opacity: .2;
+    }
+    .element1 {
+      shape-outside: circle(50% at 10px 10px) border-box;/* 圆形半径（浮动元素的长宽的50%），浮动元素的盒模型中心坐标 */
+    }
+    .element2 { /* 虽然此时我们认为元素是一个椭圆形状，但是实际上元素还是一个矩形 */
+      shape-outside: ellipse(50px 100px at 0 50%); /* x轴半径，y轴半径，浮动元素盒模型中心点坐标 */
+    }
+    .element3 { /* shape-outside与clip-path属性结合使用，此时我们改变了其他元素与浮动元素的位置关系，而不是单纯的改变浮动元素自己 */
+      shape-outside: ellipse(50px 100px at 0 50%); /* x轴半径，y轴半径，浮动元素盒模型中心点坐标 */
+      clip-path: ellipse(50px 100px at 0 50%);
+    }
+    .img1 {
+      float: left;
+      width: 200px;
+      shape-outside: url('./src/Peppa-Pig.png');
+      shape-image-threshold: 0.5; /* 创建形状边缘的像素点必须是50%透明度的 */
+    }
+    .element4 {
+      shape-outside: polygon(0 0, 0 200px, 200px 200px); /* 多边形 */
+      clip-path: polygon(0 0, 0 200px, 200px 200px);
+      transition: shape-outside 1s; /* 给属性添加动画 */
+    }
+    .element4:hover {
+      shape-outside: polygon(0 0, 0 200px, 200px 100px); /* 添加动画时同样需要相同数量的坐标 */
+      clip-path: polygon(0 0, 0 200px, 200px 100px);
+    }
+    .element5 {
+      shape-outside: inset(30px 50px 30px 0); /* 矩形，top,right,bottom,left,border-radius,表示各个方向的参数表示参照浮动元素的边缘的偏移量 */
+    }
+    .img2 {
+      float: left;
+      width: 300px;
+      height: 250px;
+      background-image: url(./src/changkuanbi.jpg);
+      background-size: cover;
+      shape-outside: circle(70% at 0 50%);
+      clip-path: circle(70% at 0 50%);
+      shape-margin: 20px;/* 形状边缘外的margin */
+    }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <div class="element element1"></div>
+    <p>圆形Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur reiciendis ad ex rerum quaerat, expedita eos? Neque nemo dolores, cum nam necessitatibus delectus pariatur ipsam labore, quidem, repellat aspernatur rem! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat qui aliquid libero alias rerum perspiciatis, quaerat, veritatis tenetur. Numquam doloribus iste quis assumenda beatae, quidem cum sequi</p>
+  </div>
+  <div class="section">
+    <div class="element element2"></div>
+    <p>椭圆形但是元素本身其实还是矩形orem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, tenetur? Animi nulla quos dignissimos doloribus laborum omnis labore sint, magni praesentium dicta aspernatur ut eligendi voluptate, in id iure minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis nostrum nesciunt minima, quas eaque iure officiis delectus, ut dolor sint aperiam nemo debitis quasi voluptas alias adipisci</p>
+  </div>
+  <div class="section">
+    <div class="element element3"></div>
+    <p>椭圆形，元素被剪裁成椭圆形Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, tenetur? Animi nulla quos dignissimos doloribus laborum omnis labore sint, magni praesentium dicta aspernatur ut eligendi voluptate, in id iure minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est laboriosam eaque, saepe, error odit adipisci repellendus et ipsum id corporis molestiae fugit perspiciatis eos voluptatum quae itaque </p>
+  </div>
+  <div class="section">
+    <img class="img1" src="src/Peppa-Pig.png" alt="">
+    <p>图片，图片边缘根据像素透明度决定Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque officia consectetur dolorem. Ipsum aspernatur atque, amet repudiandae rerum consequuntur nihil minima commodi beatae. Doloribus voluptatem voluptate repellat totam, officiis facilis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam deserunt quas</p>
+  </div>
+  <div class="section">
+    <div class="element element4"></div>
+    <p>多边形，多边形动画Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, tenetur? Animi nulla quos dignissimos doloribus laborum omnis labore sint, magni praesentium dicta aspernatur ut eligendi voluptate, in id iure minima. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis possimus maiores quo alias beatae debitis facilis.</p>
+  </div>
+  <div class="section">
+    <div class="element element5"></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sequi, rerum quasi placeat? Maiores, iusto, nisi. Voluptatum eaque, quos quisquam perferendis sunt dolorum, inventore nobis reprehenderit delectus impedit veniam perspiciatis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti odio nam illo provident mollitia consequatur quaerat laborum ipsam in re rat laborum ipsam in re re rere</p>
+  </div>
+  <div class="section">
+    <img class="img2" src="" alt="">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda vel ab voluptatibus aspernatur quo laboriosam velit distinctio incidunt qui excepturi, vitae animi quis, maiores soluta doloribus ad culpa! Alias.</p>
+  </div>
+</body>
+</html>

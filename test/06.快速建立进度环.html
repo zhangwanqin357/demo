@@ -1,0 +1,29 @@
+<style type="text/css">
+  html,body {
+    background-color: #2962ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+  }
+  .progress-ring_circle {
+    /* 定义路径为虚线，两个参数分别是虚线宽度和空格宽度 */
+    stroke-dasharray: 10 20;
+  }
+</style>
+<svg
+  class="progress-ring"
+  height="120"
+  width="120"  
+>
+  <circle
+    class="progress-ring_circle"
+    stroke="white"
+    stroke-width="4"
+    fill="transparent"
+    r="52"
+    cx="60"
+    cy="60"
+  />
+</svg>

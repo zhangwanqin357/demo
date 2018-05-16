@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>纯CSS制作播放暂停按钮</title>
+  <style type="text/css">
+    div {
+      margin-bottom: 20px;
+    }
+    /* 播放按钮 */
+    .button.play {
+      box-sizing: border-box;
+      width: 74px;
+      height: 74px;
+      border-style: solid;
+      border-width: 37px 0 37px 74px;
+      border-color: transparent transparent transparent #202020;
+    }
+    /* 暂停按钮 */
+    .button.pause {
+      width: 74px;
+      height: 74px;
+      border-style: double;
+      border-width: 0 0 0 60px;
+      border-color: #202020;
+    }
+    /* 使用js实现切换 */
+    .button-demo1 {
+      box-sizing: border-box;
+      width: 74px;
+      height: 74px;
+      border-style: solid;
+      border-width: 37px 0 37px 74px;
+      border-color: transparent transparent transparent #202020;
+      transition: 100ms all ease;
+      cursor: pointer;
+    }
+    .button-demo1.pause {
+      border-style: double;
+      border-width: 0 0 0 60px;
+    }
+    .button-demo1:hover {
+      border-color: transparent transparent transparent #404040;
+    }
+    /* 使用checkbox实现切换 */
+    .play-pause label {
+      display: block;
+      box-sizing: border-box;
+
+      width: 0;
+      height: 74px;
+
+      cursor: pointer;
+
+      border-color: transparent transparent transparent #202020;
+      transition: 100ms all ease;
+
+      border-style: double;
+      border-width: 0 0 0 60px;
+    }
+    .play-pause input[type="checkbox"] {
+      visibility: hidden;
+    }
+    /* input选中，同时后面紧跟着一个label标签，此时就会改变样式 */
+    .play-pause input[type="checkbox"]:checked + label {
+      border-style: solid;
+      border-width: 37px 0 37px 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="button play"></div>
+  <div class="button pause"></div>
+  <div class="button-demo1"></div>
+  <div class="play-pause">
+    <input type="checkbox" value="" id="playPauseCheckbox" name="playPauseCheckbox">
+    <label for="playPauseCheckbox"></label>
+  </div>
+
+  <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var button = $(".button-demo1");
+      button.click(function() {
+        button.toggleClass('pause');
+        return false;
+      });
+    });
+  </script>
+</body>
+</html>

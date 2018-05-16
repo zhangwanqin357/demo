@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>容器长宽比</title>
+  <!-- <link rel="stylesheet" type="text/css" href="https://unpkg.com/css-aspect-ratio@1/css-aspect-ratio.css"> -->
+  <style type="text/css">
+  .demo1 {
+    width: 100px;
+  }
+
+  .demo1-child {
+    position: relative;
+    /*前提条件*/
+    height: 0;
+    box-sizing: border-box;
+
+    /*width: 100px;*/
+    padding-top: 100%;
+    /* 原理是基于元素的padding-top或者padding-bottom都是根据父元素的width进行计算的，此时div的高度就是100px */
+    background-color: red;
+  }
+
+  .demo1-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .demo2 {
+    width: 100px;
+  }
+
+  .demo2 div {
+    top: 0;
+    left: 0;
+    /*前提条件*/
+    height: 0;
+    box-sizing: border-box;
+
+    padding-top: 56.25%;
+    /* 此时就是完美的宽高比，高度是宽度的56.25%，即通常情况下的16：9 */
+    background-color: yellow;
+  }
+
+  .demo3 {
+    width: 300px;
+  }
+
+  .demo4 {
+    width: 100px;
+  }
+
+  .demo4-child {
+    position: relative;
+    /*前提条件*/
+    height: 0;
+    box-sizing: border-box;
+
+    padding-top: 100%;
+    background-color: red; 
+  }
+  .demo4-child::before {
+    content: "";
+    width: 1px;
+    margin-left: -1px;
+    float: left;
+    height: 0;
+    padding-top: calc(591.44 / 1127.34 * 100%);
+  }
+  .demo4-child::after { /* to clear float */
+    content: "";
+    display: table;
+    clear: both;
+  }
+  /*demo5*/
+  /*在root里声明一个全局变量*/
+  :root {
+    --aspect-ratio:1/1;
+  }
+   /*用户所需要的容器宽度等内容*/
+  [style*="--aspect-ratio"]{
+    width: 50vw;
+    margin: 20px auto;
+    background:orange;
+  }
+  /*固定的css*/
+  [style*="--aspect-ratio"] > :first-child {
+    width: 100%;
+  }
+  [style*="--aspect-ratio"] > * {  
+    height: auto;
+  } 
+  @supports (--custom:property) {
+    [style*="--aspect-ratio"] {
+      position: relative;
+    }
+    [style*="--aspect-ratio"]::before {
+      content: "";
+      display: block;
+      padding-bottom: calc(100% / (var(--aspect-ratio)));
+    }  
+    [style*="--aspect-ratio"] > :first-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+    }  
+  }
+  /*demo8*/
+  .demo8 {
+    display: grid; /* 将容器声明为一个网格容器 */
+    grid-template-columns: repeat(16, 3.125vw); /* 容器每一列的列宽为3.125vw,共16列；所以容器总宽度就是3.125*16=50vw */
+    grid-auto-rows: 3.125vw; /* 容器每一行行高与列宽相等，也是3.125vw */
+  }
+  .demo8-child {
+    background: red; 
+    grid-column: span 16; /* 按比例合并单元格，即16列合并为1列 */
+    grid-row: span 9; 
+  }
+  </style>
+</head>
+
+<body>
+  <!-- <p>处理对象：img,iframe,video,object</p> -->
+  <!-- <p>一、基于宽度的百分比</p> -->
+  <p>使用场景：容器中放置背景图片</p>
+  <!-- <p>前提条件：1.两个容器：父元素包裹子元素；2.子元素设定height: 0;box-sizing: border-box;3.要形成多大的正方形或长方形，宽度必须给定在父元素上。</p> -->
+  <div class="demo1">
+    <div class="demo1-child">
+      <div class="demo1-box"></div>
+    </div>
+  </div>
+  <p>实际测试：正方形</p>
+  <p>如果父元素不设置宽度，只给子元素设置宽度100px，此时，父元素的宽度就是根元素默认宽度(即屏幕宽度)，子元素的高度是由父元素的宽度(屏幕宽度)计算而来的.最终结果：父元素宽度是根元素宽度，高度由子元素撑开（=根元素宽度=父元素宽度）；子元素宽度为设定的100px，高度为父元素宽度（由父元素计算而来）。</p>
+  <p>如果给父元素设定宽度，子元素不设定宽度；此时子元素宽度继承父元素100px,高度由父元素宽度计算而来；父元素宽度为设定的100px，高度由子元素高度撑开，因此父元素子元素都为正方形</p>
+  <p>但是此时，如果子元素里有内容，内容会被推下去</p>
+  <p>如果内容是img,video,iframe,object,可以对内容元素进行绝对定位解决</p>
+  <p>如果是文本，文本会溢出</p>
+  <div class="demo2">
+    <div>16：9长方形</div>
+  </div>
+  <p>实际测试：16：9长方形</p>
+  <p></p>
+  <div class="demo3">
+    <div></div>
+  </div>
+  <p>实际测试：使用CSS中的calc()函数计算padding-top/padding-bottom的值,计算时要带上单位</p>
+  <!-- <div class="demo4">
+    <div class="demo4-child">
+      <div class="demo4-box"></div>
+    </div>
+  </div>
+  <p>实际测试：使用CSS伪元素做容器的宽高比</p> -->
+
+  <!-- demo5 -->
+  <div style="--aspect-ratio:815/419;"></div>
+  <div style="--aspect-ratio:16/9;"><img src="src/changkuanbi.jpg" alt=""></div>
+  <div style="--aspect-ratio:1.4;"><video controls autoplay><source src="src/test.mp4" type="video/mp4"></video></div>
+  <div style="--aspect-ratio:16/9">
+    <iframe height=498 width=510 src='http://player.youku.com/embed/XMzE0NTA5OTM2NA==' frameborder=0 'allowfullscreen'></iframe>
+  </div>
+  <p>实际测试：使用CSS自定义属性来达到长宽比（此时当浏览器尺寸变化时，容器会一直跟随页面尺寸变化，这个方法才是响应式终极效果）</p>
+  <p>使用对象：img,video,iframe</p>
+
+  <!-- demo6 -->
+  <!-- <div class="aspect-ratio"
+   style="width: 600px; --aspect-ratio-w: 16; --aspect-ratio-h: 9;">
+    <img src="changkuanbi.jpg" alt="A cute kitten">
+  </div>
+  <p>CSS-aspect-radio文件使用，需要引入这个文件</p> -->
+
+  <!-- demo7 -->
+  <p>使用PostCSS的插件 PostCSS Aspect Ratio，前提是必须使用PostCSS</p>
+
+  <!-- demo8 -->
+  <div class="demo8">
+    <div class="demo8-child">
+    </div>
+  </div>
+  <p>实际测试：使用CSS Grid Layout与 vw 合用</p>
+</body>
+
+</html>

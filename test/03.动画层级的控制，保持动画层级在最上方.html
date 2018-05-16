@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>动画层级的控制，保持动画层级在最上方</title>
+  <style type="text/css">
+  .container {
+    width: 300px;
+  }
+  .swiper {
+    /*position: static;*/
+    animation: 10s move infinite;
+    /*添加了translate3d动画，所以会生成一个图形层*/
+    background-color: #8bc34a;
+    position: relative;
+    z-index: 100;
+  }
+
+  .list {
+    position: relative;
+    background-color: #ffc107;
+  }
+
+  @keyframes move {
+    100% {
+      transform: translate3d(10px, 0, 0);
+    }
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="swiper">轮播图</div>
+    <ul class="list">
+      <li>列表li</li>
+      <li>列表li</li>
+      <li>列表li</li>
+      <li>列表li</li>
+    </ul>
+  </div>
+</body>
+
+</html>

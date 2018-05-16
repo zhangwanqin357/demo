@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>嵌入iframe内容实现响应式的方法</title>
+  <style type="text/css">
+  /* 响应式视频 */
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 宽度是页面总宽度，高度是页面宽度的56.25% */
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 宽高全部继承父元素*/
+  }
+  /* 嵌入地图 */
+  .map-container {
+    position: relative;
+    padding-bottom: 90%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="video-container">
+    <iframe height=498 width=510 src='http://player.youku.com/embed/XMzEzNzc5OTgyMA==' frameborder=0 'allowfullscreen'></iframe>
+  </div>
+  <div class="calendar-container">
+    <iframe allowtransparency="true" frameborder="0" width="800" height="600" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=2&bd=1&k=c0c0c0&f=808080&q=1&e=1&a=1&c=54511&w=292&h=98&align=center">
+    </iframe>
+  </div>
+  <div class="map-container">
+    <iframe width="600" height="450" frameborder="0" style="border:0" src="http://developer.baidu.com/map/jsdemo/demo/a1_1.htm"></iframe>
+  </div>
+</body>
+
+</html>
