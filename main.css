@@ -1,3 +1,7 @@
+.wrapper {
+    clear: both;
+    overflow: hidden;
+}
 section {
     position: relative;
     float: left;
