@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css3属性：filter（滤镜）</title>
+  <style type="text/css">
+    .filter-wrapper {
+      display: inline-block;
+      margin: 5px;
+      padding: 0 10px 10px;
+      background: #eee;
+    }
+    .filter-wrapper p {
+      margin: 0;
+      height: 40px;
+      line-height: 40px;
+      font-size: 20px;
+    }
+    .filter-wrapper img {
+      width: 250px;
+      height: 199px;
+    }
+    .grayscale {
+      transition: filter 1s;
+    }
+    .grayscale:hover {
+      filter: grayscale(1); // 灰度，值为0~1，默认1
+    }
+    .sepia {
+      filter: sepia(1); // 褐色滤光镜，值为0~1，默认1
+    }
+    .saturate {
+      filter: saturate(2); // 饱和度，默认1
+    }
+    /* .hue-rotate {
+      filter: hue-rotate(90deg); // 色相旋转，用来改变图片的色相，默认值0deg
+    } */
+    .hue-rotate {
+      animation: adjustHue 1s alternate infinite;
+      -webkit-animation: adjustHue 1s alternate infinite;
+    }
+    @keyframes adjustHue {
+      0% { filter: hue-rotate(30deg) }
+      50% { filter: hue-rotate(60deg) }
+      100% { filter: hue-rotate(90deg) }
+    }
+    @-webkit-keyframes adjustHUe {
+      0% { filter: hue-rotate(30deg) }
+      50% { filter: hue-rotate(60deg) }
+      100% { filter: hue-rotate(90deg) }
+    }
+    .invert {
+      filter: invert(1); // 反色,类似于相机底片，默认值1
+    }
+    .opacity {
+      filter: opacity(.2); // 透明度
+    }
+    .brightness {
+      filter: brightness(.5); // 亮度,默认值1
+    }
+    .contrast {
+      filter: contrast(2); // 对比度,默认值1
+    }
+    .blur {
+      filter: blur(3px); // 模糊半径,默认值0
+    }
+    .drop-shadow {
+      filter: drop-shadow(5px 5px 5px #ccc); // 阴影效果
+    }
+    .mix {
+      filter: saturate(2) hue-rotate(90deg) grayscale(0.3) blur(2px); // 混合使用
+    }
+  </style>
+</head>
+<body>
+  <h2>css3属性：filter（滤镜）属性</h2>
+  <div class="filter-wrapper">
+    <p>原图</p>
+    <img class="normal" title="normal" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>灰度grayscale(hover看效果)</p>
+    <img class="grayscale" title="grayscale" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>褐色sepia</p>
+    <img class="sepia" title="sepia" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>饱和度saturate</p>
+    <img class="saturate" title="saturate" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>色相旋转hue-rotate</p>
+    <img class="hue-rotate" title="hue-rotate" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>反色invert</p>
+    <img class="invert" title="invert" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>透明度opacity</p>
+    <img class="opacity" title="opacity" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>亮度brightness</p>
+    <img class="brightness" title="brightness" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>对比度contrast</p>
+    <img class="contrast" title="contrast" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>模糊blur</p>
+    <img class="blur" title="blur" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>阴影效果drop-shadow</p>
+    <img class="drop-shadow" title="drop-shadow" src="src/changkuanbi.jpg" />
+  </div>
+  <div class="filter-wrapper">
+    <p>组合使用</p>
+    <img class="mix" title="mix" src="src/changkuanbi.jpg" />
+  </div> 
+</body>
+</html>
