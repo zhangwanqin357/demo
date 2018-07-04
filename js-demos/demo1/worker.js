@@ -2,6 +2,7 @@ function measure(filename) { // 创建异步请求，返回一个对象，对象
   var xhr = new XMLHttpRequest();
   var measure = {};
   xhr.open("GET", filename + '?' + (new Date()).getTime(), false);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   measure.start = (new Date()).getTime();
   xhr.send(null);
   if (xhr.status == 200) {
@@ -44,6 +45,7 @@ onmessage = function(e) {
     }
   }
 
+  console.log(arr)
   postMessage({
     msgArr,
     minTime,

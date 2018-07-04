@@ -47,16 +47,15 @@
           'https://segmentfault.com',
           'https://caniuse.com/#home',
           'https://cn.bing.com/',
-          // 'http://rocketship.com.au/404/', // 404
-          'https://lab.hakim.se/404/netmag.html',// 404
+          'http://rocketship.com.au/404/', // 404
           'https://us.battle.net/forums/redirect?uri=/wow/en/forum/topic/19655799999', // 403
-          // 'http://www.bluedaniel.com/404', // 500
         ]
       });
 
       w.onmessage = function(event) {
 
         var data = event.data;
+        console.log(data)
 
         for (var i = 0; i < data.msgArr.length; i++) {
             document.getElementById(`time${i+1}`).innerHTML = data.msgArr[i];
