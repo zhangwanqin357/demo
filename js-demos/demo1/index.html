@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <h1>线路测速</h1>
+  <div>
+    <ul>
+      <li>
+        <p>线路1用时：<span id="time1"></span></p>
+      </li>
+      <li>
+        <p>线路2用时：<span id="time2"></span></p>
+      </li>
+      <li>
+        <p>线路3用时：<span id="time3"></span></p>
+      </li>
+      <li>
+        <p>线路4用时：<span id="time4"></span></p>
+      </li>
+      <li>
+        <p>线路5用时：<span id="time5"></span></p>
+      </li>
+      <li>
+        <p>线路6用时：<span id="time6"></span></p>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <p>最少用时：<span id="minTime"></span></p>
+    <p>最少用时网站：<span id="minTimeUrl"></span></p>
+  </div>
+  <script type="text/javascript">
+    var w;
+
+    if (typeof(Worker) !== "undefined") {
+      if(typeof(w)=="undefined") {
+        w = new Worker("worker.js");
+      }
+
+      w.postMessage({
+        message:'主线程发送数据',
+        url: [
+          'https://www.baidu.com/',
+          'https://segmentfault.com',
+          'https://caniuse.com/#home',
+          'https://cn.bing.com/',
+          'http://rocketship.com.au/404/', // 404
+          'https://us.battle.net/forums/redirect?uri=/wow/en/forum/topic/19655799999', // 403
+        ]
+      });
+
+      w.onmessage = function(event) {
+
+        var data = event.data;
+
+        for (var i = 0; i < data.msgArr.length; i++) {
+            document.getElementById(`time${i+1}`).innerHTML = data.msgArr[i];
+        }
+
+        document.getElementById('minTime').innerHTML = data.minTime + 'ms';
+        document.getElementById('minTimeUrl').innerHTML = data.minTimeUrl;
+      };
+
+      w.onerror = function(event) {
+        console.log("ERROR: " + event.filename + " (" + event.lineno + "): " + event.message);
+      };
+
+    } else {
+      console.log('your browser does not support Web Workers...');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style type="text/css">
+    section {
+      margin: 5px;
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <h1>SVG基本形状</h1>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <rect id="rect" x="25" y="25" fill="#42b983" stroke="#0000ff" stroke-width="5" width="50" height="50" rx="10" ry="10"></rect>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <circle id="circle" fill="#42b983" stroke="#0000ff" stroke-width="10" cx="100" cy="100" r="95"></circle>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <ellipse id="ellipse" fill="#42b983" stroke="#0000ff" stroke-width="10" cx="100" cy="100" rx="95" ry="50"></ellipse>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <polygon id="polygon" fill="#42b983" stroke="#0000ff" stroke-width="10" points="195,10 195,195 10,195"></polygon>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <line id="line" x1="10" y1="10" x2="190" y2="190" stroke="#42b983" stroke-width="10"></line>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <polyline id="polyline" fill="#42b983" stroke="#0000ff" stroke-width="10" points="195,10 195,195 10,195"></polyline>
+    </svg>
+  </section>
+  <h1>SVG的path元素</h1>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <path d="M10 10 H100" stroke="#42b983"></path>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <path d="M10 10 V100" stroke="#42b983"></path>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <path d="M10 10 L100 100" stroke="#42b983"></path>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <path d="M10 10 C60 80, 80 60, 100 40" stroke="#42b983" fill="none"></path>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <path d="M10 10 C60 80, 80 60, 100 40 S150 10,180 50" stroke="#42b983" fill="none"></path>
+    </svg>
+  </section>
+  <h1>SVG的填充特性</h1>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <defs>
+        <style type="text/css">
+          <![CDATA[
+            #MyRect {
+              stroke: black;
+              fill: red;
+            }
+          ]]>
+        </style>
+      </defs>
+      <rect id="MyRect" x="10" y="10" width="100" height="100"></rect>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <rect id="MyRect" x="10" y="10" width="100" height="100" style="stroke: black;fill: red;"></rect>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <line x1="30" y1="30" x2="170" y2="30" stroke="#42b983" stroke-width="10" stroke-linecap="butt"></line>
+      <line x1="30" y1="80" x2="170" y2="80" stroke="#42b983" stroke-width="10" stroke-linecap="round"></line>
+      <line x1="30" y1="130" x2="170" y2="130" stroke="#42b983" stroke-width="10" stroke-linecap="square"></line>
+      <line x1="30" y1="10" x2="30" y2="170" stroke="red" stroke-width="1" stroke-linecap="square"></line>
+      <line x1="170" y1="10" x2="170" y2="170" stroke="red" stroke-width="1" stroke-linecap="square"></line>
+    </svg>
+  </section>
+  <section>
+    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <polyline fill="none" stroke="#42b983" stroke-width="20" points="30,60 60,30 90,60" stroke-linejoin="miter"></polyline>
+      <polyline fill="none" stroke="#42b983" stroke-width="20" points="30,110 60,80 90,110" stroke-linejoin="round"></polyline>
+      <polyline fill="none" stroke="#42b983" stroke-width="20" points="30,160 60,130 90,160" stroke-linejoin="bevel"></polyline>
+    </svg>
+  </section>
+</body>
+</html>
